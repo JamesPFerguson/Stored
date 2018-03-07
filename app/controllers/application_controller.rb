@@ -25,7 +25,7 @@ class ApplicationController < Sinatra::Base
       User.find(session[:user_id])
     end
 
-    def set_user
+    def s_user #sets the instance variable @user to the current user
       @user = current_user
     end
 
