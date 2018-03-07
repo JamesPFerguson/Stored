@@ -1,2 +1,4 @@
 class BuildingsController < ApplicationController
+
+
 end
