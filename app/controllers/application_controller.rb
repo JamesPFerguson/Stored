@@ -2,6 +2,8 @@ require './config/environment.rb'
 
 class ApplicationController < Sinatra::Base
 
+  #flash[:message] for messages
+
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
@@ -22,6 +24,17 @@ class ApplicationController < Sinatra::Base
     def current_user
       User.find(session[:user_id])
     end
+
+    def validation
+      if !!current_user
+        if current_user == User.find(params[:user_id])
+          true
+        else
+          false
+        end
+      else
+        false
+      end
   end
 
 end
