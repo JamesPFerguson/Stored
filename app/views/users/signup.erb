@@ -1,4 +1,9 @@
 <h3>Sign Up for Thing Tracker</h3>
+
+  <% if !flash[:message].empty? %>
+    <%= flash[:message] %>
+    <% end %>
+
 <form action="/signup" method="POST">
   <input type="text" name="username" placeholder="Username">
   <br>
