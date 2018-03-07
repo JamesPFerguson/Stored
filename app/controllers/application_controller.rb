@@ -25,8 +25,8 @@ class ApplicationController < Sinatra::Base
       User.find(session[:user_id])
     end
 
-    def validation
-      logged_in? ? current_user == User.find(params[:user_id]) : false
-  end
+    def set_user
+      @user = current_user
+    end
 
 end
