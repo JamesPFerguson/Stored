@@ -5,11 +5,16 @@
   <title>Thing Tracker</title>
 </head>
   <body>
+    <%    if session[:user_id]     %>
+
     <ul>
-      <li><a href="">Home</a></li>
-      <li><a href="">User</a></li>
-      <li><a href="">Search</a></li>
-      <li style="float:right"><a href="">Logout</a></li>
+      <li><a href="/user/show">Home</a></li>
+      <li style="float:right"><a href="/logout">Logout</a></li>
+    </ul>
+
+    <%else%>
+    <ul>
+      <li><a href="/login">Login</a></li>
     </ul>
     <%= yield %>
   </body>
