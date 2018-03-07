@@ -26,15 +26,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def validation
-      if !!current_user
-        if current_user == User.find(params[:user_id])
-          true
-        else
-          false
-        end
-      else
-        false
-      end
+      logged_in? ? current_user == User.find(params[:user_id]) : false
   end
 
 end
