@@ -28,5 +28,6 @@ class ApplicationController < Sinatra::Base
     def s_user #sets the instance variable @user to the current user
       @user = current_user
     end
+  end
 
 end
