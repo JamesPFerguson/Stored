@@ -9,6 +9,8 @@ class BuildingsController < ApplicationController
   post '/buildings' do
     if params[:building] != ""
       building = Building.create(name: params[:building])
+      s_user
+      @user.buildings << building
       redirect "/buildings/#{building.id}"
     else
       flash[:message] = "Please enter a valid name"
@@ -22,7 +24,7 @@ class BuildingsController < ApplicationController
 
   get '/buildings/:id' do
     @building = Building.find(params[:id])
-    @containers = @building.containers
+    @rooms = @building.rooms
 
     if @building.user == current_user
       erb :'/buildings/show'
