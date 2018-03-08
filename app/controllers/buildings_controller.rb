@@ -20,7 +20,7 @@ class BuildingsController < ApplicationController
   get '/buildings/:id/edit' do
     s_user
 
-    erb :'/buildings.edit'
+    erb :'/buildings/edit'
   end
 
   patch '/buildings/:id/' do
