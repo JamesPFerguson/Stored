@@ -31,11 +31,11 @@ class RoomsController < ApplicationController
   end
 
   get '/rooms/:id' do
-    @building = Building.find(params[:id])
-    @rooms = @building.rooms
+    @room = Room.find(params[:id])
+    @containers = @room.containers
 
-    if @building.user == current_user
-      erb :'/buildings/show'
+    if @room.user == current_user
+      erb :'/rooms/show'
     else
       redirect :"/error"
     end
