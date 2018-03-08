@@ -1,0 +1,13 @@
+<h1> <%=@building.name%> </h1>
+
+<% if @containers %>
+
+<% @containers.each do |container| %>
+    <h3> Container: <a href="containers/<%=container.id%>"><%=container.name%></a></h3>
+  <%end%>
+
+<% else %>
+
+    <h2>This building does not have any containers.</h2>
+
+<%end%>
