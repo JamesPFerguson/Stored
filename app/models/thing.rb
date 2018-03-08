@@ -3,4 +3,5 @@ class Thing < ActiveRecord::Base
   extend Slugifiable::KlassMethods
 
   belongs_to :container
+  belongs_to :user
 end

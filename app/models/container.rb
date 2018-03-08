@@ -3,5 +3,6 @@ class Container < ActiveRecord::Base
   extend Slugifiable::KlassMethods
 
   belongs_to :room
+  belongs_to :user
   has_many :things
 end

@@ -30,7 +30,7 @@ class RoomsController < ApplicationController
     erb :'/rooms/new'
   end
 
-  get '/buildings/:id' do
+  get '/rooms/:id' do
     @building = Building.find(params[:id])
     @rooms = @building.rooms
 
