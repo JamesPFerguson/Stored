@@ -1,13 +1,20 @@
 class RoomsController < ApplicationController
 
   get '/rooms' do
-    s_user
-    @rooms = @user.rooms
-    erb :'/rooms/index'
+    if !logged_in?
+      redirect "/login"
+    else
+      s_user
+      @rooms = @user.rooms
+      erb :'/rooms/index'
+    end
   end
 
   post '/rooms' do
-    if params[:room] != ""
+    if params[:building].empty?
+      flash[:message] = "Rooms must belong to a building"
+      redirect "/rooms/new"
+    elsif params[:room] != ""
       building = Building.find_by(name: params["building"])
       room = Room.create(name: params[:room])
       building.rooms << room
@@ -18,8 +25,9 @@ class RoomsController < ApplicationController
     end
   end
 
-  get '/buildings/new' do
-    erb :'/buildings/new'
+  get '/rooms/new' do
+    @buildings = current_user.buildings
+    erb :'/rooms/new'
   end
 
   get '/buildings/:id' do
