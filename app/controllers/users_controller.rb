@@ -10,8 +10,14 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if params[:username] == "" || params[:password] == "" || params[:email] == ""
+      flash[:message] = "Please enter valid information."
       redirect '/signup'
-      flash[:message] = "Please enter valid informtion."
+    elsif User.find_by(username: params[:username])
+      flash[:message] = "That username is already taken"
+      redirect '/signup'
+    elsif User.find_by(email: params[:email])
+      flash[:message] = "That email is already taken"
+      redirect '/signup'
     else
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       @user.save
