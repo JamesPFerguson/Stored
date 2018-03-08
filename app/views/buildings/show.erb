@@ -5,7 +5,7 @@
   <br>
   <li style="list-style-type: none;">
     <% @rooms.each do |room| %>
-        <a href="/rooms/<%=room.id%>"><%=room.name%></a>
+      <ul style="list-style-type: none;">  <a href="/rooms/<%=room.id%>"><%=room.name%></a> </ul>
     <%end%>
   </li>
 

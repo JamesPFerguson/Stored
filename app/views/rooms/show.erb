@@ -1,0 +1,16 @@
+<h1> Building: <%=@room.building.name%> Room: <%=@room.name%> </h1>
+
+<% if !@containers.empty? %>
+  <h2>Containers:</h2>
+  <br>
+  <li style="list-style-type: none;">
+    <% @containers.each do |container| %>
+      <ul style="list-style-type: none;">  <a href="/containers/<%=container.id%>"><%=container.name%></a> </ul>
+    <%end%>
+  </li>
+
+<% else %>
+
+<h2>This room does not have any containers.</h2>
+
+<%end%>
