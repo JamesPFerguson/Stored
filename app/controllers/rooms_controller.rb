@@ -41,20 +41,22 @@ class RoomsController < ApplicationController
     end
   end
 
-  get '/buildings/:id/edit' do
-    @building = Building.find(params[:id])
-    if @building.user == current_user
-      erb :'/buildings/edit'
+  get '/rooms/:id/edit' do
+    @buildings = current_user.buildings
+    @room = Room.find(params[:id])
+    if @room.user == current_user
+      erb :'/rooms/edit'
     else
       redirect :"/error"
     end
   end
 
   patch '/buildings/:id/' do
-    @building = Building.find(params[:id])
-    @building.update(name: params["building_name"])
-    @building.save
-    redirect "/buildings/#{@building.id}"
+    @room= Room.find(params[:id])
+    @room.update(name: params["room"], building: params[:building])
+    @room.save
+    binding.pry
+    redirect "/rooms/#{@room.id}"
   end
 
   delete '/buildings:id' do
