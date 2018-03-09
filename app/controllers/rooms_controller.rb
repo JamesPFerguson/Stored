@@ -15,6 +15,7 @@ class RoomsController < ApplicationController
       flash[:message] = "Rooms must belong to a building"
       redirect "/rooms/new"
     elsif params[:room] != ""
+      binding.pry
       building = Building.find_by(name: params["building"])
       room = Room.create(name: params[:room])
       building.rooms << room
@@ -51,7 +52,7 @@ class RoomsController < ApplicationController
     end
   end
 
-  patch '/buildings/:id/' do
+  patch '/rooms/:id/' do
     @room= Room.find(params[:id])
     @room.update(name: params["room"], building: params[:building])
     @room.save
