@@ -35,8 +35,7 @@ class RoomsController < ApplicationController
   get '/rooms/:id' do
     @room = Room.find(params[:id])
     @containers = @room.containers
-
-    if @room.user == current_user
+    if current_user.rooms.include?(@room)
       erb :'/rooms/show'
     else
       redirect :"/error"
