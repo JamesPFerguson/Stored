@@ -56,7 +56,6 @@ class RoomsController < ApplicationController
     @room= Room.find(params[:id])
     @room.update(name: params["room"], building: params[:building])
     @room.save
-    binding.pry
     redirect "/rooms/#{@room.id}"
   end
 
