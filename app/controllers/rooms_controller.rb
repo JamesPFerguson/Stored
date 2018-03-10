@@ -15,10 +15,11 @@ class RoomsController < ApplicationController
       flash[:message] = "Rooms must belong to a building"
       redirect "/rooms/new"
     elsif params[:room] != ""
-      binding.pry
       building = Building.find_by(name: params["building"])
-      room = Room.create(name: params[:room])
-      building.rooms << room
+      room = Room.find_or_create_by(name: params[:room])
+      if !building.rooms.include?(room)
+        building.rooms << room
+      end
       redirect "/rooms/#{room.id}"
     else
       flash[:message] = "Please enter a valid name"
