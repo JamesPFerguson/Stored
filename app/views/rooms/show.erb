@@ -15,3 +15,9 @@
 <h2>This room does not have any containers.</h2>
 
 <%end%>
+
+<form method="post" action="/buildings/<%=@building.id%>/delete">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+
+  <input type="submit" value="Delete this building and everything in it">
+</form>
