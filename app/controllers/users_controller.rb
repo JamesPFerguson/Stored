@@ -54,6 +54,46 @@ class UsersController < ApplicationController
     end
   end
 
+  get '/users/show' do
+    s_user
+    @buildings = @user.buildings
+    erb :'/users/show'
+  end
+
+  post '/search' do
+
+    search = params[:search]
+
+    if params[:type] == "Containers" && !(search == "")
+
+      @container = Container.find_by(name: search)
+      if @container
+        redirect "/containers/#{@container.id}"
+      else
+        flash[:message] = "Your search returned no results"
+        redirect "/users/show"
+      end
+
+    elsif params[:type] == "Things" && !(search == "")
+
+      @thing = Thing.find_by(name: search)
+
+      if @thing
+        redirect "/things/#{@thing.id}"
+      else
+        flash[:message] = "Your search returned no results"
+        redirect "/users/show"
+      end
+
+    else
+
+      flash[:message] = "You must select a type and enter search characters"
+      redirect "/users/show"
+
+    end
+  end
+
+
 
 
 end

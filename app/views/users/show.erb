@@ -1,0 +1,19 @@
+<H1> Hello, <%=@user.username %> </h1>
+
+  <% if flash[:message] %>
+    <%= flash[:message] %>
+  <%end%>
+
+  <h2> Search for a container or thing </h2>
+  <form method="POST" action="/search">
+    <input type="text" name="search">
+    <input type="radio" value="Containers" name="type">
+    <input type="radio" value="Things" name="type">
+    <input type="submit" value="Search">
+  </form>
+
+  <h2> Buildings </h2>
+<% @buildings.each do |building| %>
+  <a href="/buildings/<%=building.id%>"><%=building.name%></a>
+  <br>
+<%end%>
