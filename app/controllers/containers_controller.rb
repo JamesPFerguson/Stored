@@ -54,9 +54,11 @@ class ContainersController < ApplicationController
   end
 
   patch '/containers/:id/' do
-    s_user
-
-    redirect "/containers/#{@room.id}"
+    @container = Room.find(params[:id])
+    room = Room.find(params[:room])
+    @container.update(name: params["container_name"], room: room)
+    @container.save
+    redirect "/containers/#{@container.id}"
   end
 
   delete '/containers:id' do
