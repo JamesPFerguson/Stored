@@ -15,20 +15,20 @@ class ContainersController < ApplicationController
       redirect "/login"
     else
       s_user
-      @containers = @user.containers
+      @rooms = @user.rooms
       erb :'/containers/new'
     end
   end
 
   post '/containers' do
-    if params[:room].empty?
+    if !params[:room]
       flash[:message] = "containers must belong to a room"
       redirect "/containers/new"
     elsif params[:container] != ""
       room = Room.find_by(name: params["room"])
       container = Container.find_or_create_by(name: params[:container])
       if !current_user.containers.include?(container)
-        current_user.containers << containers
+        room.containers << container
       end
       redirect "/containers/#{container.id}"
     else
