@@ -26,11 +26,9 @@ class ThingsController < ApplicationController
       flash[:message] = "things must belong to a container"
       redirect "/things/new"
     elsif params[:thing] != ""
-      container = container.find_by(name: params["container"])
-      thing = thing.find_or_create_by(name: params[:thing])
-      if !container.things.include?(thing)
-        container.things << thing
-      end
+      container = Container.find_by(name: params["container"])
+      thing = Thing.Create(name: params[:thing])
+      container.things << thing
       redirect "/things/#{thing.id}"
     else
       flash[:message] = "Please enter a valid name"
@@ -39,7 +37,7 @@ class ThingsController < ApplicationController
   end
 
   get '/things/:id' do
-    @thing = thing.find(params[:id])
+    @thing = Thing.find(params[:id])
     @room = @thing.room
     @building = @thing.building
     @container = @thing.container
@@ -51,7 +49,7 @@ class ThingsController < ApplicationController
   end
 
   get '/things/:id/edit' do
-    @thing = thing.find(params[:id])
+    @thing = Thing.find(params[:id])
     @buildings = current_user.buildings
     @building = @thing.building
     @container = thing.container
