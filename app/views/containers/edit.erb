@@ -1,0 +1,13 @@
+<h1>Edit <%= @container.name %> </h1>
+
+<form action="/containers/<%=@container.id%>" method="PATCH">
+  <input type="hidden" name="_method" value="patch">
+    <label>Container Name:</label><input type="text" name="container_name" value="<%=@container.name%>">
+
+  <% @rooms.each do |room| %>
+    <br>
+    <input type ="radio" value="<%=room.id%>" name="room"><%=room.name%></input>
+
+  <%end%>
+  <input type="submit" value="Edit container">
+</form>
