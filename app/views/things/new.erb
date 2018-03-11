@@ -1,0 +1,20 @@
+<h1>Add a Thing</h1>
+
+<% if flash[:message] %>
+  <%=flash[:message] %>
+<%end%>
+
+<form action="/things" method="POST">
+  <input type="text" name="thing" placeholder="Thing Name">
+  <br>
+  <input type="text" name="notes" placeholder="notes" width="50" height="25">
+  <label> Containers: </label>
+
+  <%@containers.each do |container| %>
+    <br>
+    <input type ="radio" value="<%=container.name%>" name="container"><%=container.name%>
+
+  <%end%>
+
+  <input type="submit" value="Create Thing">
+</form>
