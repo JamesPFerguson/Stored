@@ -49,7 +49,7 @@ class RoomsController < ApplicationController
   get '/rooms/:id/edit' do
     @buildings = current_user.buildings
     @room = Room.find(params[:id])
-    if current_user.rooms.include?(@room)
+    if current_user.rooms && current_user.rooms.include?(@room)
       erb :'/rooms/edit'
     else
       redirect :"/error"

@@ -26,7 +26,7 @@ class ThingsController < ApplicationController
       redirect "/things/new"
     elsif params[:thing] != ""
       container = Container.find_by(name: params["container"])
-      thing = Thing.create(name: params[:thing])
+      thing = Thing.create(name: params[:thing], notes: params[:notes])
       container.things << thing
       redirect "/things/#{thing.id}"
     else
@@ -37,10 +37,11 @@ class ThingsController < ApplicationController
 
   get '/things/:id' do
     @thing = Thing.find(params[:id])
-    @room = @thing.room
-    @building = @thing.building
     @container = @thing.container
-    if current_user.things.include?(@thing)
+    @room = @container.room
+    @building = @room.building
+
+    if current_user.things && current_user.things.include?(@thing)
       erb :'/things/show'
     else
       redirect :"/error"
@@ -50,19 +51,18 @@ class ThingsController < ApplicationController
   get '/things/:id/edit' do
     @thing = Thing.find(params[:id])
     @buildings = current_user.buildings
-    @building = @thing.building
-    @container = thing.container
-    if current_user.things.include?(@thing)
+    @container = @thing.container
+    if current_user.things && current_user.things.include?(@thing)
       erb :'/things/edit'
     else
       redirect :"/error"
     end
   end
 
-  patch '/things/:id/' do
+  patch '/things/:id/edit' do
     thing = Thing.find(params[:id])
     container = Container.find(params[:container])
-    thing.update(name: params["thing_name"], container: container)
+    thing.update(name: params["thing_name"], container: container, notes: params[:notes])
     thing.save
     redirect "/things/#{thing.id}"
   end
@@ -70,7 +70,7 @@ class ThingsController < ApplicationController
   delete '/things/:id' do
     thing = Thing.find(params[:id])
     thing.delete
-    redirect "/things/index"
+    redirect "/things"
   end
 
 end

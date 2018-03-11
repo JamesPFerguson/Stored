@@ -9,7 +9,10 @@
 <form action="/things" method="POST">
   <input type="text" name="thing" placeholder="Thing Name">
   <br>
-  <input type="text" name="notes" placeholder="notes" width="50" height="25">
+  <br>
+  <input type="text" name="notes" placeholder="Notes">
+  <br>
+  <br>
   <label> Containers: </label>
 
 <% if @containers %>
@@ -20,5 +23,7 @@
   <%end%>
 
 <%end%>
+<br>
+<br>
   <input type="submit" value="Create Thing">
 </form>

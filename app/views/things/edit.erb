@@ -1,17 +1,24 @@
 <h1>Edit <%= @thing.name %> </h1>
 
-<form action="/things/<%=@thing.id%>" method="PATCH">
+<form action="/things/<%=@thing.id%>/edit" method="POST">
   <input type="hidden" name="_method" value="patch">
     <label>Thing Name:</label><input type="text" name="thing_name" value="<%=@thing.name%>">
-
+    <br>
+    <label>Thing Notes:</label><input type="text" name="notes" value="<%=@thing.notes%>">
+    <br>
 What container is the thing in?
 <% @buildings.each do |building| %>
-  <h3> <%= building.name %> Rooms: </h3>
-    <% building.rooms.each do |room| %>
-      <br>
-      <label>Room containers: </label>
-      <%room.containers.each do |container| %>
-        <input type ="radio" value="<%=container.id%>" name="container" <%= 'checked' if @thing.container == container %> > <%=container.name%></input>
-      <%end%>
-    <%end%>
-<%end%>
+ <h3> <%= building.name %> Rooms: </h3>
+   <% building.rooms.each do |room| %>
+     <br>
+     <label><%=room.name%> containers: </label>
+     <br>
+     <% room.containers.each do |container| %>
+     <br>
+       <input type ="radio" value="<%=container.id%>" name="container" <%= 'checked' if @thing.container == container %> > <%=container.name%></input>
+       <br>
+     <% end %>
+   <% end %>
+<% end %>
+<input type="submit" value="Edit Thing">
+</form>

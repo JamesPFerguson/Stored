@@ -1,6 +1,6 @@
-<% if !@things.empty? %>
+<% if @things %>
 
-  <% @things.each do |things| %>
+  <% @things.each do |thing| %>
     <h3> Thing: <a href="/things/<%=thing.id%>"><%=thing.name%></a></h3>
   <%end%>
 
