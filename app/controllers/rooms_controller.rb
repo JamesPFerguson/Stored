@@ -53,15 +53,15 @@ class RoomsController < ApplicationController
   end
 
   patch '/rooms/:id/' do
-    @room= Room.find(params[:id])
-    @room.update(name: params["room"], building: params[:building])
-    @room.save
-    redirect "/rooms/#{@room.id}"
+    room= Room.find(params[:id])
+    room.update(name: params["room"], building: params[:building])
+    room.save
+    redirect "/rooms/#{room.id}"
   end
 
   delete '/rooms/:id' do
-    @room = Room.find(params[:id])
-    @room.delete
+    room = Room.find(params[:id])
+    room.delete
     redirect "/rooms/index"
   end
 

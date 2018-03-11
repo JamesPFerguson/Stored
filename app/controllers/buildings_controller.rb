@@ -43,15 +43,15 @@ class BuildingsController < ApplicationController
   end
 
   patch '/buildings/:id/' do
-    @building = Building.find(params[:id])
-    @building.update(name: params["building_name"])
-    @building.save
-    redirect "/buildings/#{@building.id}"
+    building = Building.find(params[:id])
+    building.update(name: params["building_name"])
+    building.save
+    redirect "/buildings/#{building.id}"
   end
 
   delete '/buildings/:id' do
-    @building = Building.find(params[:id])
-    @building.delete
+    building = Building.find(params[:id])
+    building.delete
     redirect "/buildings"
   end
 
