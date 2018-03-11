@@ -62,8 +62,6 @@ class UsersController < ApplicationController
 
   post '/search' do
 
-    binding.pry
-
     search = params[:search]
 
     if params[:type] == "Containers" && !(search == "")
