@@ -1,0 +1,19 @@
+<h1>Add a container</h1>
+
+<% if flash[:message] %>
+  <%=flash[:message] %>
+<%end%>
+
+<form action="/containers" method="POST">
+  <input type="text" name="container" placeholder="Container Name">
+  <br>
+  <label> Rooms: </label>
+
+  <%@rooms.each do |room| %>
+    <br>
+    <input type ="radio" value="<%=room.name%>" name="room"><%=room.name%>
+
+  <%end%>
+
+  <input type="submit" value="Create container">
+</form>
