@@ -1,0 +1,25 @@
+<h1> Building: <%=@building.name%> </h1>
+
+<h2> Room: <%=@room.name%> </h2>
+
+<h3> Container: <%=@container.name%></h3>
+
+<% if !@things.empty? %>
+  <h2>Things:</h2>
+  <br>
+    <% @things.each do |thing| %>
+     <h3><a href="/things/<%=thing.id%>"><%=thing.name%></a></h3>
+    <%end%>
+
+
+<% else %>
+
+<h2>This container does not have any things.</h2>
+
+<%end%>
+
+<form method="post" action="/containers/<%=@container.id%>">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+
+  <input type="submit" value="Delete this container"> (This will delete all things in the container as well)
+</form>
