@@ -42,9 +42,15 @@ class ContainersController < ApplicationController
   end
 
   get '/containers/:id/edit' do
-    s_user
-
-    erb :'/containers/edit'
+    @container = Container.find(params[:id])
+    @buildings = current_user.buildings
+    @building = @container.building
+    @room = container.room
+    if current_user.containers.include?(@containers)
+      erb :'/containers/edit'
+    else
+      redirect :"/error"
+    end
   end
 
   patch '/containers/:id/' do
