@@ -16,6 +16,7 @@ class ThingsController < ApplicationController
     else
       s_user
       @things = @user.things
+      @containers = @user.containers
       erb :'/things/new'
     end
   end
@@ -39,9 +40,9 @@ class ThingsController < ApplicationController
 
   get '/things/:id' do
     @thing = thing.find(params[:id])
+    @room = @thing.room
     @building = @thing.building
     @container = @thing.container
-    @things = thing.things
     if current_user.things.include?(@thing)
       erb :'/things/show'
     else
@@ -54,7 +55,7 @@ class ThingsController < ApplicationController
     @buildings = current_user.buildings
     @building = @thing.building
     @container = thing.container
-    if current_user.things.include?(@things)
+    if current_user.things.include?(@thing)
       erb :'/things/edit'
     else
       redirect :"/error"
@@ -62,15 +63,15 @@ class ThingsController < ApplicationController
   end
 
   patch '/things/:id/' do
-    thing = container.find(params[:id])
-    container = container.find(params[:container])
+    thing = Thing.find(params[:id])
+    container = Container.find(params[:container])
     thing.update(name: params["thing_name"], container: container)
     thing.save
     redirect "/things/#{thing.id}"
   end
 
   delete '/things/:id' do
-    thing = thing.find(params[:id])
+    thing = Thing.find(params[:id])
     thing.delete
     redirect "/things/index"
   end
