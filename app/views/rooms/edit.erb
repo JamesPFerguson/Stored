@@ -1,12 +1,12 @@
-<h1>Edit <%=@room.name%> </h1>
+<h1>Edit <%= @room.name %> </h1>
 
-<form action="/rooms/<%=@room.id%>/" method="PATCH">
+<form action="/rooms/<%=@room.id%>" method="PATCH">
   <input type="hidden" name="_method" value="patch">
-    <label>Room Name:</label><input type="text" name="room_name" value="<%=@room.name">
+    <label>Room Name:</label><input type="text" name="room_name" value="<%=@room.name%>">
 
-  <%@buildings.each do |building| %>
+  <% @buildings.each do |building| %>
     <br>
-    <input type ="radio" name="building"><%=building.name%></input>
+    <input type ="radio" value="<%=building.id%>" name="building"><%=building.name%></input>
 
   <%end%>
   <input type="submit" value="Edit Room">

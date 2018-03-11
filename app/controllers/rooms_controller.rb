@@ -45,7 +45,7 @@ class RoomsController < ApplicationController
   get '/rooms/:id/edit' do
     @buildings = current_user.buildings
     @room = Room.find(params[:id])
-    if @room.user == current_user
+    if current_user.rooms.include?(@room)
       erb :'/rooms/edit'
     else
       redirect :"/error"
@@ -59,10 +59,10 @@ class RoomsController < ApplicationController
     redirect "/rooms/#{@room.id}"
   end
 
-  delete '/buildings:id' do
-    @building = Building.find(params[:id])
-    @building.delete
-    redirect "/buildings/index"
+  delete '/rooms/:id' do
+    @room = Room.find(params[:id])
+    @room.delete
+    redirect "/rooms/index"
   end
 
 end
