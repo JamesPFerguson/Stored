@@ -2,6 +2,8 @@
 
 <% if flash[:message] %>
   <%=flash[:message] %>
+  <br>
+  <br>
 <%end%>
 
 <form action="/things" method="POST">
@@ -10,11 +12,13 @@
   <input type="text" name="notes" placeholder="notes" width="50" height="25">
   <label> Containers: </label>
 
+<% if @containers %>
   <%@containers.each do |container| %>
     <br>
     <input type ="radio" value="<%=container.name%>" name="container"><%=container.name%>
 
   <%end%>
 
+<%end%>
   <input type="submit" value="Create Thing">
 </form>

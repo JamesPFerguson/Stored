@@ -7,12 +7,13 @@
 <form action="/containers" method="POST">
   <input type="text" name="container" placeholder="Container Name">
   <br>
-  <label> Rooms: </label>
-
-  <%@rooms.each do |room| %>
-    <br>
-    <input type ="radio" value="<%=room.name%>" name="room"><%=room.name%>
-
+  <br>
+  <% @buildings.each do |building| %>
+    <h3> <%= building.name %> Rooms: </h3>
+      <% building.rooms.each do |room| %>
+        <br>
+        <input type ="radio" value="<%=room.id%>" name="room"> <%=room.name%></input>
+      <%end%>
   <%end%>
 
   <input type="submit" value="Create Container">

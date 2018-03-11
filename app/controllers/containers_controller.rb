@@ -15,6 +15,7 @@ class ContainersController < ApplicationController
       redirect "/login"
     else
       s_user
+      @buildings = @user.buildings
       @rooms = @user.rooms
       erb :'/containers/new'
     end
@@ -25,7 +26,7 @@ class ContainersController < ApplicationController
       flash[:message] = "containers must belong to a room"
       redirect "/containers/new"
     elsif params[:container] != ""
-      room = Room.find_by(name: params["room"])
+      room = Room.find(params["room"])
       container = Container.find_or_create_by(name: params[:container])
       if !current_user.containers.include?(container)
         room.containers << container
@@ -39,9 +40,9 @@ class ContainersController < ApplicationController
 
   get '/containers/:id' do
     @container = Container.find(params[:id])
-    @building = @container.building
+    @building = @container.room.building
     @room = @container.room
-    @things = Container.things
+    @things = @container.things
     if current_user.containers.include?(@container)
       erb :'/containers/show'
     else
@@ -52,9 +53,9 @@ class ContainersController < ApplicationController
   get '/containers/:id/edit' do
     @container = Container.find(params[:id])
     @buildings = current_user.buildings
-    @building = @container.building
-    @room = container.room
-    if current_user.containers.include?(@containers)
+    @building = @container.room.building
+    @room = @container.room
+    if current_user.containers.include?(@container)
       erb :'/containers/edit'
     else
       redirect :"/error"
@@ -72,6 +73,6 @@ class ContainersController < ApplicationController
   delete '/containers/:id' do
     container = Container.find(params[:id])
     container.delete
-    redirect "/containers/index"
+    redirect "/containers"
   end
 end

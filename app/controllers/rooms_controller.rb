@@ -66,7 +66,7 @@ class RoomsController < ApplicationController
   delete '/rooms/:id' do
     room = Room.find(params[:id])
     room.delete
-    redirect "/rooms/index"
+    redirect "/rooms"
   end
 
 end

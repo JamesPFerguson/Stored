@@ -15,14 +15,13 @@ class ThingsController < ApplicationController
       redirect "/login"
     else
       s_user
-      @things = @user.things
       @containers = @user.containers
       erb :'/things/new'
     end
   end
 
   post '/things' do
-    if params[:container].empty?
+    if !params[:container]
       flash[:message] = "things must belong to a container"
       redirect "/things/new"
     elsif params[:thing] != ""

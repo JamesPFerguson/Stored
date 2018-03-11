@@ -6,7 +6,7 @@
 
   <% @buildings.each do |building| %>
     <br>
-    <input type ="radio" value="<%=building.id%>" name="building"><%=building.name%></input>
+    <input type ="radio" value="<%=building.id%>" name="building"  <%= 'checked' if @room.building == building %> ><%=building.name%></input>
 
   <%end%>
   <input type="submit" value="Edit Room">

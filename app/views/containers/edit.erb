@@ -4,10 +4,14 @@
   <input type="hidden" name="_method" value="patch">
     <label>Container Name:</label><input type="text" name="container_name" value="<%=@container.name%>">
 
-<% @building.each do |building| %>
+<% @buildings.each do |building| %>
   <h3> <%= building.name %> Rooms: </h3>
     <% building.rooms.each do |room| %>
       <br>
       <input type ="radio" value="<%=room.id%>" name="room" <%= 'checked' if @container.room == room %> > <%=room.name%></input>
     <%end%>
 <%end%>
+<br>
+<br>
+<input type="submit" value="Edit Container">
+</form>
