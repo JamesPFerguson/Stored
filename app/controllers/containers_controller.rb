@@ -1,15 +1,23 @@
 class ContainersController < ApplicationController
 
   get '/containers' do
-    s_user
-    @containers = @user.containers
-    erb :'/containers/index'
+    if !logged_in?
+      redirect "/login"
+    else
+      s_user
+      @containers = @user.containers
+      erb :'/containers/index'
+    end
   end
 
   get '/containers/new' do
-    s_user
-    @containers = @user.containers
-    erb :'/containers/new'
+    if !logged_in?
+      redirect "/login"
+    else
+      s_user
+      @containers = @user.containers
+      erb :'/containers/new'
+    end
   end
 
   post '/containers' do

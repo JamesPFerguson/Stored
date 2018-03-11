@@ -28,8 +28,12 @@ class RoomsController < ApplicationController
   end
 
   get '/rooms/new' do
-    @buildings = current_user.buildings
-    erb :'/rooms/new'
+    if !logged_in?
+      redirect "/login"
+    else
+      @buildings = current_user.buildings
+      erb :'/rooms/new'
+    end
   end
 
   get '/rooms/:id' do
