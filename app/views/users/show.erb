@@ -4,11 +4,11 @@
     <%= flash[:message] %>
   <%end%>
 
-  <h2> Search for a container or thing </h2>
+  <h2> Search for a Container or Thing </h2>
   <form method="POST" action="/search">
     <input type="text" name="search">
-    <input type="radio" value="Containers" name="type">
-    <input type="radio" value="Things" name="type">
+    Containers <input type="radio" value="Containers" name="type">
+    Things <input type="radio" value="Things" name="type">
     <input type="submit" value="Search">
   </form>
 

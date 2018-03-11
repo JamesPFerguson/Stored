@@ -16,8 +16,8 @@
 
 <%end%>
 
-<form method="post" action="/buildings/<%=@building.id%>/delete">
+<form method="post" action="/room/<%=@room.id%>/delete">
     <input id="hidden" type="hidden" name="_method" value="delete">
 
-  <input type="submit" value="Delete this building and everything in it">
+  <input type="submit" value="Delete this room"> (This will delete all containers and things in the room)
 </form>
