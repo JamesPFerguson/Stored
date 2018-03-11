@@ -1,0 +1,11 @@
+<% if !@containers.empty? %>
+
+  <% @containers.each do |containers| %>
+    <h3> Container: <a href="/containers/<%=container.id%>"><%=container.name%></a></h3>
+  <%end%>
+
+<% else %>
+
+    <h2>You have not added any containers.</h2>
+
+<%end%>
