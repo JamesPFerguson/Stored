@@ -1,0 +1,17 @@
+<h1> Building: <%=@building.name%> </h1>
+
+<h2> Room: <%=@room.name%> </h2>
+
+<h3> Container: <%=@container.name%></h3>
+
+<h4> Thing: <%=@thing.name%> </h4>
+
+<p> Notes: <%=@thing.notes%> </p>
+
+
+
+<form method="post" action="/things/<%=thing.id%>">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+
+  <input type="submit" value="Delete this thing">
+</form>
