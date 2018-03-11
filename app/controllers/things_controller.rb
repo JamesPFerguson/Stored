@@ -27,7 +27,7 @@ class ThingsController < ApplicationController
       redirect "/things/new"
     elsif params[:thing] != ""
       container = Container.find_by(name: params["container"])
-      thing = Thing.Create(name: params[:thing])
+      thing = Thing.create(name: params[:thing])
       container.things << thing
       redirect "/things/#{thing.id}"
     else

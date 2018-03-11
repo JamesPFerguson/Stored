@@ -25,10 +25,10 @@ class ContainersController < ApplicationController
       flash[:message] = "containers must belong to a room"
       redirect "/containers/new"
     elsif params[:container] != ""
-      room = room.find_by(name: params["room"])
-      container = container.find_or_create_by(name: params[:container])
-      if !room.containers.include?(container)
-        room.containers << container
+      room = Room.find_by(name: params["room"])
+      container = Container.find_or_create_by(name: params[:container])
+      if !current_user.containers.include?(container)
+        current_user.containers << containers
       end
       redirect "/containers/#{container.id}"
     else

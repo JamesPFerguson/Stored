@@ -1,16 +1,21 @@
 class BuildingsController < ApplicationController
 
   get '/buildings' do
-    s_user
-    @buildings = @user.buildings
-    erb :'/buildings/index'
+    if !logged_in?
+      redirect "/login"
+    else
+      s_user
+      @buildings = @user.buildings
+      erb :'/buildings/index'
+    end
   end
 
   post '/buildings' do
     if params[:building] != ""
-      building = Building.create(name: params[:building])
-      s_user
-      @user.buildings << building
+      building = Building.find_or_create_by(name: params[:building])
+      if !current_user.buildings.include?(building)
+        current_user.buildings << building
+      end
       redirect "/buildings/#{building.id}"
     else
       flash[:message] = "Please enter a valid name"

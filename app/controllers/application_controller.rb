@@ -2,8 +2,6 @@ require './config/environment.rb'
 
 class ApplicationController < Sinatra::Base
 
-  #flash[:message] for messages
-
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
