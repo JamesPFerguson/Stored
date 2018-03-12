@@ -54,7 +54,7 @@ class BuildingsController < ApplicationController
       redirect "/buildings/#{building.id}"
     else
       flash[:message] = "building must have a name"
-      redirect "/buildings/#{params[:id]}"
+      redirect "/buildings/#{params[:id]}/edit"
     end
   end
 

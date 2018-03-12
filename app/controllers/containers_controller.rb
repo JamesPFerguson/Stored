@@ -65,7 +65,7 @@ class ContainersController < ApplicationController
   patch '/containers/:id/edit' do
     if params["container_name"] == ""
       flash[:message] = "Container name cannot be blank"
-      redirect "/containerss/#{params[:id]}/edit"
+      redirect "/containers/#{params[:id]}/edit"
     else
       container = Container.find(params[:id])
       room = Room.find(params[:room])
