@@ -47,10 +47,15 @@ class BuildingsController < ApplicationController
   end
 
   patch '/buildings/:id/edit' do
-    building = Building.find(params[:id])
-    building.update(name: params["building_name"])
-    building.save
-    redirect "/buildings/#{building.id}"
+    if params[:building_name] != ""
+      building = Building.find(params[:id])
+      building.update(name: params["building_name"])
+      building.save
+      redirect "/buildings/#{building.id}"
+    else
+      flash[:message] = "building must have a name"
+      redirect "/buildings/#{params[:id]}"
+    end
   end
 
   delete '/buildings/:id' do

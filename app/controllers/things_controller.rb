@@ -62,7 +62,7 @@ class ThingsController < ApplicationController
   patch '/things/:id/edit' do
     if params["thing_name"] == ""
       flash[:message] = "thing name cannot be blank"
-      redirect "/things/#{thing.id}/edit"
+      redirect "/things/#{params[:id]}/edit"
     else
       thing = Thing.find(params[:id])
       container = Container.find(params[:container])

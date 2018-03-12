@@ -59,7 +59,7 @@ class RoomsController < ApplicationController
   patch '/rooms/:id/edit' do
     if params["room_name"] == ""
       flash[:message] = "Room name cannot be blank"
-      redirect "/rooms/#{room.id}/edit"
+      redirect "/rooms/#{params[:id]}/edit"
     else
       room = Room.find(params[:id])
       building = Building.find(params[:building])
