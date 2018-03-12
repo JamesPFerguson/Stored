@@ -2,7 +2,7 @@
 
   <h2> Room: <%=@room.name%> </h2>
 
-<% if !@containers.empty? %>
+<% if !@containers %>
   <h2>Containers:</h2>
   <br>
     <% @containers.each do |container| %>
@@ -21,3 +21,7 @@
 
   <input type="submit" value="Delete this room"> (This will delete all containers and things in the room)
 </form>
+
+<br>
+<br>
+<a href="/rooms/<%=@room.id%>/edit">Edit This Room</a>

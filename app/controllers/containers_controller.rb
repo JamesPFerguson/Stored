@@ -63,7 +63,7 @@ class ContainersController < ApplicationController
   end
 
   patch '/containers/:id/edit' do
-    container = Room.find(params[:id])
+    container = Container.find(params[:id])
     room = Room.find(params[:room])
     container.update(name: params["container_name"], room: room)
     container.save

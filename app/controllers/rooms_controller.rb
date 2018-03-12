@@ -57,8 +57,9 @@ class RoomsController < ApplicationController
   end
 
   patch '/rooms/:id/edit' do
-    room= Room.find(params[:id])
-    room.update(name: params["room"], building: params[:building])
+    room = Room.find(params[:id])
+    building = Building.find(params[:building])
+    room.update(name: params["room_name"], building: building)
     room.save
     redirect "/rooms/#{room.id}"
   end
