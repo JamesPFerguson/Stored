@@ -40,6 +40,7 @@ class ContainersController < ApplicationController
 
   get '/containers/:id' do
     @container = Container.find(params[:id])
+    binding.pry
     @building = @container.room.building
     @room = @container.room
     @things = @container.things
