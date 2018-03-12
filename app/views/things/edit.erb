@@ -1,5 +1,9 @@
 <h1>Edit <%= @thing.name %> </h1>
 
+<% if flash[:message] %>
+  <%= flash[:message]%>
+<%end%>
+
 <form action="/things/<%=@thing.id%>/edit" method="POST">
   <input type="hidden" name="_method" value="patch">
     <label>Thing Name:</label><input type="text" name="thing_name" value="<%=@thing.name%>">
