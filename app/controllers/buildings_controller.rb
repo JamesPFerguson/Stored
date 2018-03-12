@@ -47,7 +47,7 @@ class BuildingsController < ApplicationController
     end
   end
 
-  patch '/buildings/:id/' do
+  patch '/buildings/:id/edit' do
     building = Building.find(params[:id])
     building.update(name: params["building_name"])
     building.save

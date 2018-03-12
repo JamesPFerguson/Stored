@@ -56,7 +56,7 @@ class RoomsController < ApplicationController
     end
   end
 
-  patch '/rooms/:id/' do
+  patch '/rooms/:id/edit' do
     room= Room.find(params[:id])
     room.update(name: params["room"], building: params[:building])
     room.save
