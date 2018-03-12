@@ -66,7 +66,7 @@ class UsersController < ApplicationController
 
     if params[:type] == "Containers" && !(search == "")
 
-      @container = Container.find_by(name: search)
+      @container = current_user.containers.find{|container| container.name == search}
       if @container
         redirect "/containers/#{@container.id}"
       else
@@ -76,7 +76,7 @@ class UsersController < ApplicationController
 
     elsif params[:type] == "Things" && !(search == "")
 
-      @thing = Thing.find_by(name: search)
+      @thing = current_user.things.find{|thing| thing.name == search}
 
       if @thing
         redirect "/things/#{@thing.id}"
