@@ -40,7 +40,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect "/users/show"
     else
-      flash[:message] = "Unable to Log in"
+      flash[:message] = "Unable to Log in with the given username and password"
       redirect "/login"
     end
   end
