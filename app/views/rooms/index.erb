@@ -1,4 +1,4 @@
-<% if !@rooms.empty? %>
+<% if @rooms %>
 
   <% @rooms.each do |room| %>
     <h3> Room: <a href="/rooms/<%=room.id%>"><%=room.name%></a></h3>
