@@ -63,11 +63,16 @@ class ContainersController < ApplicationController
   end
 
   patch '/containers/:id/edit' do
-    container = Container.find(params[:id])
-    room = Room.find(params[:room])
-    container.update(name: params["container_name"], room: room)
-    container.save
-    redirect "/containers/#{container.id}"
+    if params["container_name"] == ""
+      flash[:message] = "Container name cannot be blank"
+      redirect "/containerss/#{container.id}/edit"
+    else
+      container = Container.find(params[:id])
+      room = Room.find(params[:room])
+      container.update(name: params["container_name"], room: room)
+      container.save
+      redirect "/containers/#{container.id}"
+    end
   end
 
   delete '/containers/:id' do

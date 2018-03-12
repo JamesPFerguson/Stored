@@ -57,11 +57,16 @@ class RoomsController < ApplicationController
   end
 
   patch '/rooms/:id/edit' do
-    room = Room.find(params[:id])
-    building = Building.find(params[:building])
-    room.update(name: params["room_name"], building: building)
-    room.save
-    redirect "/rooms/#{room.id}"
+    if params["room_name"] == ""
+      flash[:message] = "Room name cannot be blank"
+      redirect "/rooms/#{room.id}/edit"
+    else
+      room = Room.find(params[:id])
+      building = Building.find(params[:building])
+      room.update(name: params["room_name"], building: building)
+      room.save
+      redirect "/rooms/#{room.id}"
+    end
   end
 
   delete '/rooms/:id' do

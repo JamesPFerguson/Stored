@@ -60,11 +60,16 @@ class ThingsController < ApplicationController
   end
 
   patch '/things/:id/edit' do
-    thing = Thing.find(params[:id])
-    container = Container.find(params[:container])
-    thing.update(name: params["thing_name"], container: container, notes: params[:notes])
-    thing.save
-    redirect "/things/#{thing.id}"
+    if params["thing_name"] == ""
+      flash[:message] = "thing name cannot be blank"
+      redirect "/things/#{thing.id}/edit"
+    else
+      thing = Thing.find(params[:id])
+      container = Container.find(params[:container])
+      thing.update(name: params["thing_name"], container: container, notes: params[:notes])
+      thing.save
+      redirect "/things/#{thing.id}"
+    end
   end
 
   delete '/things/:id' do
