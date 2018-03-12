@@ -1,6 +1,6 @@
 <h1> <%=@building.name%> </h1>
 
-<% if !@rooms.empty? %>
+<% if @rooms %>
   <h2>Rooms:</h2>
   <br>
     <% @rooms.each do |room| %>

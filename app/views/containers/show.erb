@@ -4,7 +4,7 @@
 
 <h3> Container: <%=@container.name%></h3>
 
-<% if !@things.empty? %>
+<% if @things %>
   <h2>Things:</h2>
   <br>
     <% @things.each do |thing| %>

@@ -11,7 +11,7 @@ class RoomsController < ApplicationController
   end
 
   post '/rooms' do
-    if params[:building].empty?
+    if !params[:building]
       flash[:message] = "Rooms must belong to a building"
       redirect "/rooms/new"
     elsif params[:room] != ""
@@ -38,8 +38,8 @@ class RoomsController < ApplicationController
 
   get '/rooms/:id' do
     @room = Room.find(params[:id])
-    @containers = @room.containers
     if current_user.rooms.include?(@room)
+    @containers = @room.containers
       erb :'/rooms/show'
     else
       redirect :"/error"

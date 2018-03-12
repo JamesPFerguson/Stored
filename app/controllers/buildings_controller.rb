@@ -29,9 +29,8 @@ class BuildingsController < ApplicationController
 
   get '/buildings/:id' do
     @building = Building.find(params[:id])
-    @rooms = @building.rooms
-
     if @building.user == current_user
+    @rooms = @building.rooms
       erb :'/buildings/show'
     else
       redirect :"/error"

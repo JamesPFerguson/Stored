@@ -40,10 +40,10 @@ class ContainersController < ApplicationController
 
   get '/containers/:id' do
     @container = Container.find(params[:id])
-    @building = @container.room.building
-    @room = @container.room
-    @things = @container.things
     if current_user.containers.include?(@container)
+    @room = @container.room
+    @building = @room.building
+    @things = @container.things
       erb :'/containers/show'
     else
       redirect :"/error"
@@ -52,10 +52,10 @@ class ContainersController < ApplicationController
 
   get '/containers/:id/edit' do
     @container = Container.find(params[:id])
+    if current_user.containers.include?(@container)
     @buildings = current_user.buildings
     @building = @container.room.building
     @room = @container.room
-    if current_user.containers.include?(@container)
       erb :'/containers/edit'
     else
       redirect :"/error"
