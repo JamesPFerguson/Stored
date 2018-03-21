@@ -9,13 +9,13 @@
 <p> Notes: <%=@thing.notes%> </p>
 
 
-
+<p>
+<form method="get" action="/things/<%=@thing.id%>/edit">
+  <input type="submit" value="Edit Thing">
+</form>
+</p>
 <form method="post" action="/things/<%=@thing.id%>">
     <input id="hidden" type="hidden" name="_method" value="delete">
 
   <input type="submit" value="Delete this thing">
 </form>
-
-<br>
-<br>
-<a href="/things/<%=@thing.id%>/edit">Edit This Thing</a>

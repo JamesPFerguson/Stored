@@ -13,12 +13,12 @@
 <h2>This building does not have any rooms.</h2>
 
 <%end%>
-
-<form method="post" action="/buildings/<%=@building.id%>">
-    <input id="hidden" type="hidden" name="_method" value="delete">
-
-  <input type="submit" value="Delete this Building"> (This will delete all rooms, containers, and thing in the building)
-
-  <br>
-  <br>
-  <a href="/buildings/<%=@building.id%>/edit">Edit This Building</a>
+  <p>
+  <form method="get" action="/buildings/<%=@building.id%>/edit">
+    <input type="submit" value="Edit Building">
+  </form>
+</p>
+  <form method="post" action="/buildings/<%=@building.id%>">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete this Building"> (This will delete all rooms, containers, and things in the building)
+  </form>

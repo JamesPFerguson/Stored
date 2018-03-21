@@ -17,13 +17,13 @@
 <h2>This container does not have any things.</h2>
 
 <%end%>
-
+<p>
+<form method="get" action="/containers/<%=@container.id%>/edit">
+  <input type="submit" value="Edit Container">
+</form>
+</p>
 <form method="post" action="/containers/<%=@container.id%>">
     <input id="hidden" type="hidden" name="_method" value="delete">
 
   <input type="submit" value="Delete this container"> (This will delete all things in the container as well)
 </form>
-
-<br>
-<br>
-<a href="/containers/<%=@container.id%>/edit">Edit This Container</a>

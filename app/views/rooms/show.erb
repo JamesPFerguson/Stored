@@ -15,13 +15,13 @@
 <h2>This room does not have any containers.</h2>
 
 <%end%>
-
+<p>
+<form method="get" action="/rooms/<%=@room.id%>/edit">
+  <input type="submit" value="Edit Room">
+</form>
+</p>
 <form method="post" action="/rooms/<%=@room.id%>">
     <input id="hidden" type="hidden" name="_method" value="delete">
 
   <input type="submit" value="Delete this room"> (This will delete all containers and things in the room)
 </form>
-
-<br>
-<br>
-<a href="/rooms/<%=@room.id%>/edit">Edit This Room</a>
