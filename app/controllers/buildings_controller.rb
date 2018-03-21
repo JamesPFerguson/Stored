@@ -28,6 +28,9 @@ class BuildingsController < ApplicationController
   end
 
   get '/buildings/:id' do
+    if !logged_in?
+      redirect "/login"
+    end
     @building = Building.find(params[:id])
     if @building.user == current_user
     @rooms = @building.rooms
@@ -38,6 +41,9 @@ class BuildingsController < ApplicationController
   end
 
   get '/buildings/:id/edit' do
+    if !logged_in?
+      redirect "/login"
+    end
     @building = Building.find(params[:id])
     if @building.user == current_user
       erb :'/buildings/edit'

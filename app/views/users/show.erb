@@ -12,7 +12,10 @@
     <input type="submit" value="Search">
   </form>
 
+  <% if @buildings %>
   <h2> Buildings </h2>
+  <%end%>
+
 <% @buildings.each do |building| %>
   <a href="/buildings/<%=building.id%>"><%=building.name%></a>
   <br>

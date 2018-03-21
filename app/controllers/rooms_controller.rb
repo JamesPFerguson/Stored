@@ -37,6 +37,9 @@ class RoomsController < ApplicationController
   end
 
   get '/rooms/:id' do
+    if !logged_in?
+      redirect "/login"
+    end
     @room = Room.find(params[:id])
     if current_user.rooms.include?(@room)
     @containers = @room.containers
@@ -47,6 +50,9 @@ class RoomsController < ApplicationController
   end
 
   get '/rooms/:id/edit' do
+    if !logged_in?
+      redirect "/login"
+    end
     @buildings = current_user.buildings
     @room = Room.find(params[:id])
     if current_user.rooms && current_user.rooms.include?(@room)

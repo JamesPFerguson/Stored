@@ -36,6 +36,9 @@ class ThingsController < ApplicationController
   end
 
   get '/things/:id' do
+    if !logged_in?
+      redirect "/login"
+    end
     @thing = Thing.find(params[:id])
     @container = @thing.container
     @room = @container.room
@@ -49,6 +52,9 @@ class ThingsController < ApplicationController
   end
 
   get '/things/:id/edit' do
+    if !logged_in?
+      redirect "/login"
+    end
     @thing = Thing.find(params[:id])
     @buildings = current_user.buildings
     @container = @thing.container

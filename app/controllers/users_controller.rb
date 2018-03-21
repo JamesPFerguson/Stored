@@ -55,6 +55,9 @@ class UsersController < ApplicationController
   end
 
   get '/users/show' do
+    if !logged_in?
+      redirect "/login"
+    end
     s_user
     @buildings = @user.buildings
     erb :'/users/show'

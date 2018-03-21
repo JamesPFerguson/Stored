@@ -39,6 +39,9 @@ class ContainersController < ApplicationController
   end
 
   get '/containers/:id' do
+    if !logged_in?
+      redirect "/login"
+    end
     @container = Container.find(params[:id])
     if current_user.containers.include?(@container)
     @room = @container.room
@@ -51,6 +54,9 @@ class ContainersController < ApplicationController
   end
 
   get '/containers/:id/edit' do
+    if !logged_in?
+      redirect "/login"
+    end
     @container = Container.find(params[:id])
     if current_user.containers.include?(@container)
     @buildings = current_user.buildings
