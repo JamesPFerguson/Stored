@@ -16,10 +16,11 @@ class RoomsController < ApplicationController
       redirect "/rooms/new"
     elsif params[:room] != ""
       building = Building.find_by(name: params["building"])
-      room = Room.find_or_create_by(name: params[:room])
-      if !building.rooms.include?(room)
-        building.rooms << room
-      end
+      #room = Room.find_or_create_by(name: params[:room])
+      #if !building.rooms.include?(room)
+      #  building.rooms << room
+      #end
+      room = building.rooms.create(name: params[:name])
       redirect "/rooms/#{room.id}"
     else
       flash[:message] = "Please enter a valid name"
